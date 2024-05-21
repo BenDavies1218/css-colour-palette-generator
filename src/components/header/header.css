@@ -1,0 +1,25 @@
+header {
+    background-color: var(--main-colour-3);
+
+    .logo {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 2em;
+        padding-left: 2em;
+        
+        
+        
+    }
+
+    h6 {
+        color: var(--text-colour-1);
+        padding-left: 3em;
+        margin: 0px 0px;
+    }
+
+    h1 {
+        color: var(--text-colour-1);
+        margin: 0px 0px;
+    }
+}
