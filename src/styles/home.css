@@ -1,0 +1,55 @@
+.titleContainer {
+    background-image: url("/public/background.webp");
+    background-size: cover;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.defaultPalettes {
+    color: aliceblue;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 50px;
+    width: 80vw;
+    max-width: 1250px;
+    padding: 100px;
+    background-color: rgba(36, 36, 36, 0.841);
+    border-radius: 30px;
+}
+
+.colourThemes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.singleDefaultPalette {
+    display: flex;
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: rgba(245, 245, 245, 0.715);
+    &:hover {
+        cursor: pointer;
+
+    }
+}
+
+.linkToGenerator {
+    color: black;
+    border: 2px solid black;
+    background-color: rgba(245, 245, 245, 0.715);
+    padding: 10px;
+    border-radius: 10px;
+}

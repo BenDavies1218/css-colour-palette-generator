@@ -45,6 +45,8 @@ export function generateTones(baseColour, themeName = "") {
 
   let finalizedOutput = {
     name: newThemeName,
+    displayName:
+      themeName || colorblender(baseColour).name().toLocaleLowerCase(),
     colours: [],
   };
 

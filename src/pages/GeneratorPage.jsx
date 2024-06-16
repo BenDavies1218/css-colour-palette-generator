@@ -6,13 +6,19 @@ import {
 import { Sketch } from "@uiw/react-color";
 import { useCurrentThemeData } from "../contexts/currentThemeContext";
 import { ColourBlock } from "../components/ColourBlock";
+import PureModal from "react-pure-modal";
+import "react-pure-modal/dist/react-pure-modal.min.css";
+import { CssCodeExport } from "../components/CssCodeExport";
 
 export default function GeneratorPage() {
-  // Base colour from form
-  let [formBaseColour, setFormBaseColour] = useState("#000000");
+  const [modal, setModal] = useState(false);
 
   // Base colour from global state
   let baseColourGlobal = useBaseColourGlobalData();
+
+  // Base colour from form
+  let [formBaseColour, setFormBaseColour] = useState(baseColourGlobal);
+
   // let baseColourGlobalRaw = useContext(BaseColourGlobalDataContext);
   let setBaseColourGlobal = useBaseColourGlobalDispatch();
 
@@ -25,19 +31,38 @@ export default function GeneratorPage() {
 
   useEffect(() => {
     setBaseColourGlobal(formBaseColour);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formBaseColour]);
 
   return (
     <div>
+      <PureModal
+        header={currentTheme.displayName}
+        footer={
+          <div>
+            <h6>Thankyou for generating colours</h6>
+          </div>
+        }
+        isOpen={modal}
+        closeButton="X"
+        closeButtonPosition="bottom"
+        onClose={() => {
+          setModal(false);
+          return true;
+        }}
+      >
+        <CssCodeExport />
+      </PureModal>
+
       {/* Base colour input form */}
-      <h1>{formBaseColour}</h1>
+      <h4>Name of colour: {currentTheme.displayName}</h4>
+      <h4>Current Hex value: {formBaseColour}</h4>
+
       {/* <input type="color" name="" id="" /> */}
       <Sketch
         color={formBaseColour}
         onChange={(colour) => setFormBaseColour(colour.hex)}
       />
-
+      <button onClick={() => setModal(!modal)}>Export CSS</button>
       {/* CSS theme display component  */}
       {currentTheme.colours?.map((colourEntry, index) => {
         return (
