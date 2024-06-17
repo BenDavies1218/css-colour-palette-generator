@@ -1,25 +1,14 @@
-import { useCurrentThemeData } from "../contexts/currentThemeContext";
 import SyntaxHighlighter from "react-syntax-highlighter";
+import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "../styles/modal.css";
 
-export function CssCodeExport() {
-  let currentTheme = useCurrentThemeData();
-
+export function ThemeCodeExport({ colours }) {
   const buildCssVariableString = () => {
-    // Iterate over all colour objects in currentTheme
-    // and build a CSS snippet as a string
-    let codeAsString = "";
-    codeAsString += `:root {\n`;
-
-    currentTheme.colours.forEach((colourObj) => {
-      codeAsString += `\t--${colourObj.themeName}-${colourObj.strength}: ${colourObj.hex};\n`;
-    });
-
-    codeAsString += `}`;
-    return codeAsString;
+    return `:root {\n${colours
+      .map((colour, index) => `  --Theme-Colour-${index}: ${colour};\n`)
+      .join("")}}`;
   };
 
   const handleCopyClick = () => {
@@ -32,11 +21,11 @@ export function CssCodeExport() {
   };
 
   return (
-    <div>
+    <div className="CopyContainer">
       <h1>Your CSS code is here...</h1>
-
-      <SyntaxHighlighter>{buildCssVariableString()}</SyntaxHighlighter>
-
+      <SyntaxHighlighter language="css" style={docco}>
+        {buildCssVariableString()}
+      </SyntaxHighlighter>
       <button onClick={handleCopyClick}>Copy code to Clipboard</button>
       <ToastContainer />
     </div>

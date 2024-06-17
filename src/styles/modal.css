@@ -1,0 +1,20 @@
+.pure-modal {
+    min-width: 600px;
+    max-width: 90%;
+
+    .panel-body {
+        display: block; overflow-x: auto; padding: 0.5em; background: rgb(240, 240, 240); color: rgb(68, 68, 68);
+    }
+
+    .panel-heading {
+        color: black;
+    }
+
+
+    h1 {
+        font-size: 24px;
+    }
+    h6 {
+        color: black;
+    }
+}

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "../styles/home.css";
 import Palette from "../components/Palette";
+import "../styles/modal.css";
 
 export default function HomePage() {
   const defaultColoursThemes = [
@@ -12,6 +13,17 @@ export default function HomePage() {
     ["#3cc47c", "#1e392a", "#e9c893", "#828081"],
     ["#008f95", "#eb6e80", "#e9b000", "#e24e42"],
     ["#4484ce", "#d9d9d9", "#f9cf00", "#f19f4d"],
+  ];
+
+  const defaultMonoThemes = [
+    ["#4abdac", "#56c7b6", "#61d2c0", "#6bdeca"],
+    ["#0e0b16", "#151321", "#1d1a2b", "#242136"],
+    ["#b82601", "#c03714", "#c84827", "#d1583a"],
+    ["#caebf2", "#d3eff5", "#dceff8", "#e5f3fa"],
+    ["#c09f80", "#c8a78b", "#d0af95", "#d8b79f"],
+    ["#3cc47c", "#4fd18b", "#62de9a", "#75eba9"],
+    ["#008f95", "#199fa3", "#33afb1", "#4dbfbe"],
+    ["#4484ce", "#5892d4", "#6ca1da", "#80aff1"],
   ];
 
   /**
@@ -27,9 +39,15 @@ export default function HomePage() {
     <>
       <div className="titleContainer">
         <div className="defaultPalettes">
-          <h2>Themes</h2>
+          <h2>Colour Themes</h2>
           <div className="colourThemes">
             {defaultColoursThemes.map((array, index) => (
+              <Palette key={index} colours={array} />
+            ))}
+          </div>
+          <h2>MonoThemes</h2>
+          <div className="defaultMonoThemes">
+            {defaultMonoThemes.map((array, index) => (
               <Palette key={index} colours={array} />
             ))}
           </div>

@@ -18,7 +18,9 @@
     "react-pure-modal": "^2.2.5",
     "react-router-dom": "^6.23.1",
     "react-syntax-highlighter": "^15.5.0",
-    "react-use": "^17.5.0"
+    "react-toastify": "^10.0.5",
+    "react-use": "^17.5.0",
+    "toast": "^0.5.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
