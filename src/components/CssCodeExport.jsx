@@ -4,9 +4,10 @@ import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/modal.css";
+import { defaultThemePalette } from "../assets/defaultThemes";
 
 export function CssCodeExport() {
-  let currentTheme = useCurrentThemeData();
+  let currentTheme = useCurrentThemeData() || defaultThemePalette;
 
   const buildCssVariableString = () => {
     // Iterate over all colour objects in currentTheme
@@ -14,9 +15,14 @@ export function CssCodeExport() {
     let codeAsString = "";
     codeAsString += `:root {\n`;
 
-    currentTheme.colours.forEach((colourObj) => {
-      codeAsString += `\t--${colourObj.themeName}-${colourObj.strength}: ${colourObj.hex};\n`;
-    });
+    if (currentTheme.colours) {
+      currentTheme.colours.forEach((colourObj) => {
+        codeAsString += `\t--${colourObj.themeName}-${colourObj.strength}: ${colourObj.hex};\n`;
+      });
+    } else {
+      console.error("currentTheme.colours is undefined or null");
+      // Handle this case, such as displaying an error message or fallback content
+    }
 
     codeAsString += `}`;
     return codeAsString;

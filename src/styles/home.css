@@ -1,12 +1,12 @@
 .titleContainer {
-    background-image: url("/public/background.webp");
+    background-image: url("/public/background1.jpg");
     background-size: cover;
-    height: 100vh;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 50px;
 }
 
 .defaultPalettes {
@@ -22,7 +22,7 @@
     width: 80vw;
     max-width: 1250px;
     padding: 100px;
-    background-color: rgba(36, 36, 36, 0.841);
+    background-color: rgba(36, 36, 36, 0.674);
     border-radius: 30px;
 }
 
