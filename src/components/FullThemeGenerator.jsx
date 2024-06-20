@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Sketch } from "@uiw/react-color";
 import PureModal from "react-pure-modal";
 import "react-pure-modal/dist/react-pure-modal.min.css";
 import { CssCodeExport } from "./CssCodeExport";
-import { useGenerator } from "../hooks/useGenerator";
+import { useGeneratorFullTheme } from "../hooks/useGeneratorFullTheme";
 import "../styles/monoTheme.css";
 import SingleColour from "./SingleColour";
 
@@ -16,7 +16,7 @@ export default function MonoThemeGenerator() {
     setFormBaseColour,
     currentTheme,
     toggleModal,
-  } = useGenerator();
+  } = useGeneratorFullTheme();
 
   const handleColourChange = (index, colour) => {};
 
