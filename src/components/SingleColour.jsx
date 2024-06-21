@@ -16,23 +16,30 @@ export default function SingleColour({
 
   useEffect(() => {
     if (isActive) {
-      setColourState(selectedColour);
+      const parsedColour = storedColour
+        ? storedColour.replace(/^"|"$/g, "")
+        : colour;
+      setColourState(parsedColour);
     }
-  }, [isActive, storedColour]);
+  }, [isActive, storedColour, colour]);
 
   const handleClick = () => {
-    setColourState(colour);
-    setStoredColour(colour);
-    onClick(colour);
+    const baseColour = localStorage.getItem("css-basecolour") || "#ffffff";
+    const parsedBaseColour = baseColour.replace(/^"|"$/g, "");
+    setColourState(parsedBaseColour);
+    setStoredColour(parsedBaseColour);
+    onClick(parsedBaseColour);
   };
 
   return (
-    <div
-      className="colourBlock"
-      style={{ backgroundColor: colourState }}
-      onClick={handleClick}
-    >
-      <h6>{colour}</h6>
+    <div>
+      <div
+        className="colourBlock"
+        style={{ backgroundColor: colourState }}
+        onClick={handleClick}
+      >
+        <h6>{colourState}</h6>
+      </div>
     </div>
   );
 }

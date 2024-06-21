@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Sketch } from "@uiw/react-color";
 import PureModal from "react-pure-modal";
 import "react-pure-modal/dist/react-pure-modal.min.css";
-import { CssCodeExport } from "./CssCodeExport";
-import { useGeneratorFullTheme } from "../hooks/useGeneratorFullTheme";
+import { CssCodeExportFullTheme } from "./CssCodeExportFullTheme";
+import { useGenerator } from "../hooks/useGenerator";
 import "../styles/monoTheme.css";
 import SingleColour from "./SingleColour";
 
-export default function MonoThemeGenerator() {
+export default function fullThemeGenerator() {
   const [colours, setColours] = useState(["#ffffff", "#ffffff", "#ffffff"]);
   const [lastClickedIndex, setLastClickedIndex] = useState(null);
   const {
@@ -16,15 +16,21 @@ export default function MonoThemeGenerator() {
     setFormBaseColour,
     currentTheme,
     toggleModal,
-  } = useGeneratorFullTheme();
+  } = useGenerator();
 
-  const handleColourChange = (index, colour) => {};
+  const handleColourChange = (index, colour) => {
+    const newColours = [...colours];
+    newColours[index] = colour;
+    setColours(newColours);
+    setLastClickedIndex(index);
+  };
 
   const handleColourAmount = (param) => {
     if (param === "+" && colours.length < 10) {
       setColours([...colours, "#ffffff"]); // Add new colour
     } else if (param === "-" && colours.length > 1) {
-      setColours(colours.slice(0, colours.length - 1)); // Remove last colour
+      localStorage.setItem(`Colour-number-${colours.length - 1}`, "#ffffff");
+      setColours(colours.slice(0, colours.length - 1));
     }
   };
 
@@ -43,11 +49,10 @@ export default function MonoThemeGenerator() {
         closeButtonPosition="bottom"
         onClose={toggleModal}
       >
-        <CssCodeExport />
+        <CssCodeExportFullTheme />
       </PureModal>
 
       {/* Base colour input form */}
-      <h4>Name of colour: {currentTheme.displayName}</h4>
       <h4>Current Hex value: {formBaseColour}</h4>
 
       <Sketch
@@ -76,7 +81,7 @@ export default function MonoThemeGenerator() {
             number={index}
             selectedColour={colours[index]}
             isActive={index === lastClickedIndex}
-            onClick={(colour) => handleColourChange(index, colour)}
+            onClick={(baseColour) => handleColourChange(index, baseColour)}
           />
         ))}
       </div>

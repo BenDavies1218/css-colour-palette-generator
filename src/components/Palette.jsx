@@ -10,7 +10,6 @@ export default function Palette({ colours }) {
 
   const handleThemeClick = () => {
     setModal(true);
-    console.log("theme clicked");
   };
 
   return (
