@@ -6,9 +6,10 @@ import "react-toastify/dist/ReactToastify.css";
 import "../styles/modal.css";
 
 export function CssCodeExportFullTheme() {
+  // State to hold filtered colours from localStorage
   const [filteredColours, setFilteredColours] = useState([]);
 
-  // Fetch all Colour-number-X values from local storage and filter out #ffffff
+  // Effect to fetch Colour-number-X values from localStorage
   useEffect(() => {
     const coloursFromLocalStorage = [];
     for (let i = 0; i < 10; i++) {
@@ -20,6 +21,7 @@ export function CssCodeExportFullTheme() {
     setFilteredColours(coloursFromLocalStorage);
   }, []);
 
+  // Function to build CSS variable string based on filtered colours
   const buildCssVariableString = (colours) => {
     let codeAsString = ":root {\n";
     colours.forEach((colour, index) => {
@@ -29,6 +31,7 @@ export function CssCodeExportFullTheme() {
     return codeAsString;
   };
 
+  // Function to handle copying CSS code to clipboard
   const handleCopyClick = () => {
     navigator.clipboard.writeText(buildCssVariableString(filteredColours));
     toast.success("Code Copied", {
@@ -42,11 +45,15 @@ export function CssCodeExportFullTheme() {
     <div>
       <h1>Your CSS code is here...</h1>
 
+      {/* Display CSS code with syntax highlighting */}
       <SyntaxHighlighter>
         {buildCssVariableString(filteredColours)}
       </SyntaxHighlighter>
 
+      {/* Button to copy CSS code to clipboard */}
       <button onClick={handleCopyClick}>Copy code to Clipboard</button>
+
+      {/* Toast notification container */}
       <ToastContainer />
     </div>
   );

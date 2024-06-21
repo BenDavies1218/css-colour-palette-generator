@@ -4,6 +4,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 40px;
     h5 {
         color: var(--text-colour-1);
         padding: 0;

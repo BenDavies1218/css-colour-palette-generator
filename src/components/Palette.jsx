@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PureModal from "react-pure-modal";
 import "react-pure-modal/dist/react-pure-modal.min.css";
 import { ToastContainer } from "react-toastify";
@@ -6,15 +6,19 @@ import "react-toastify/dist/ReactToastify.css";
 import { ThemeCodeExport } from "./ThemeCodeExport";
 
 export default function Palette({ colours }) {
+  // State to manage modal visibility
   const [modal, setModal] = useState(false);
 
+  // Function to handle opening modal
   const handleThemeClick = () => {
     setModal(true);
   };
 
   return (
     <>
+      {/* Container to display individual colours */}
       <div className="singleDefaultPalette">
+        {/* Map over colours array to render each colour */}
         {colours.map((colour, index) => (
           <div
             className="paletteColour"
@@ -23,6 +27,8 @@ export default function Palette({ colours }) {
             onClick={handleThemeClick}
           ></div>
         ))}
+
+        {/* Modal for exporting theme code */}
         <PureModal
           header="Themes"
           footer={
@@ -38,9 +44,12 @@ export default function Palette({ colours }) {
             return true;
           }}
         >
+          {/* Component for exporting theme code */}
           <ThemeCodeExport colours={colours} />
         </PureModal>
       </div>
+
+      {/* Toast notification container */}
       <ToastContainer />
     </>
   );
