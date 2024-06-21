@@ -79,7 +79,7 @@ export default function fullThemeGenerator() {
 
       {/* Colour amount controls */}
       <div className="colourAmount">
-        <h3>How Many Colours</h3>
+        <h3>Colours</h3>
         <button className="colorButton" onClick={() => handleColourAmount("+")}>
           +
         </button>

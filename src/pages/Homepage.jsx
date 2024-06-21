@@ -46,19 +46,19 @@ export default function HomePage() {
               <Palette key={index} colours={array} />
             ))}
           </div>
-          <h2>Monochromatic Themes</h2>
+          <h2>Monochromatic</h2>
           <div className="colourThemes">
             {defaultMonoThemes.map((array, index) => (
               <Palette key={index} colours={array} />
             ))}
           </div>
-          <h2>DuoTone Themes</h2>
+          <h2>DuoTone</h2>
           <div className="colourThemes">
             {defaultDuoThemes.map((array, index) => (
               <Palette key={index} colours={array} />
             ))}
           </div>
-          <h2>High Contrast Themes</h2>
+          <h2>High Contrast</h2>
           <div className="colourThemes">
             {defaultContrastThemes.map((array, index) => (
               <Palette key={index} colours={array} />
